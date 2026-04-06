@@ -1,0 +1,29 @@
+# Grav Specific
+/assets/*
+/cache/*
+/images/*
+/logs/*
+/tmp/*
+/backup/*
+
+# Keep .gitkeep files so directories exist on remote
+!/assets/.gitkeep
+!/cache/.gitkeep
+!/images/.gitkeep
+!/logs/.gitkeep
+!/tmp/.gitkeep
+
+# Composer and Vendor
+/vendor/
+composer.lock
+
+# User Data (Optional: ignore if you only want to version themes/plugins)
+/user/accounts/*
+/user/data/*
+
+# OS/Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
