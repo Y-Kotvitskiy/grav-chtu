@@ -6,20 +6,21 @@ home:
 pages:
   theme: quark
   markdown:
-    extra: false
+    extra: true
   process:
     markdown: true
     twig: false
+  redirect_default_route: true
 
 cache:
-  enabled: true
+  enabled: false
   check:
     method: file
   driver: auto
   prefix: 'g'
 
 twig:
-  cache: true
+  cache: false
   debug: true
   auto_reload: true
   autoescape: true
@@ -52,3 +53,5 @@ languages:
   include_default_lang_file_extension: false
   content_fallback:
     uk: ['uk', 'en'] # If page not in UA, show EN
+setup:
+  umask: 0022

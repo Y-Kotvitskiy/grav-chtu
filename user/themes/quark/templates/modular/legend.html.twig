@@ -1,0 +1,32 @@
+<section class="container grid-lg">
+    <div class="route-legend">
+        <h2>{{ page.title }}</h2>
+
+        {{ page.content|raw }}
+
+    </div>
+</section>
+
+<style>
+    .route-legend dl {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+    }
+
+    .route-legend dd {
+        margin: 0;
+        padding: 5px;
+        padding-left: 0;
+    }
+
+    .route-legend dt {
+        margin: 0;
+        padding: 5px;
+    }
+
+    .route-legend dd::before{
+        content: '-';
+        padding-right: 5px;
+    }
+
+</style>

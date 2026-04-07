@@ -3,13 +3,17 @@
   {% for p in page.children.visible %}
     {% set active_page = (p.active or p.activeChild) ? 'active' : '' %}
     <li>
-      <a href="{{ p.url }}" class="{{ active_page }}">
-        {{ p.menu }}
-      </a>
       {% if p.children.visible.count > 0 %}
+        <a href="javascript:void(0)" class="{{ active_page }}">
+          {{ p.menu }}
+        </a>
       <ul>
         {{ macros.nav_loop(p) }}
       </ul>
+      {% else  %}
+        <a href="{{ p.url }}" class="{{ active_page }}">
+          {{ p.menu }}
+        </a>
       {% endif %}
     </li>
   {% endfor %}
