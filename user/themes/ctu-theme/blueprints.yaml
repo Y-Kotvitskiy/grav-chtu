@@ -1,0 +1,32 @@
+name: Ctu Theme
+slug: ctu-theme
+type: theme
+version: 0.1.0
+description: ChTU theme
+icon: rebel
+author:
+  name: Johnny
+  email: ekotvizky@gmail.com
+homepage: https://github.com/johnny/grav-theme-ctu-theme
+demo: http://demo.yoursite.com
+keywords: grav, theme, etc
+bugs: https://github.com/johnny/grav-theme-ctu-theme/issues
+readme: https://github.com/johnny/grav-theme-ctu-theme/blob/develop/README.md
+license: MIT
+
+dependencies:
+  - { name: grav, version: '>=1.6.0' }
+
+form:
+  validation: loose
+  fields:
+    dropdown.enabled:
+        type: toggle
+        label: Dropdown in Menu
+        highlight: 1
+        default: 1
+        options:
+          1: PLUGIN_ADMIN.ENABLED
+          0: PLUGIN_ADMIN.DISABLED
+        validate:
+          type: bool
