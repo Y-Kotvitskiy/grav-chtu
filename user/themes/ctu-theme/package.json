@@ -1,0 +1,18 @@
+{
+  "name": "ctu-theme",
+  "version": "1.0.0",
+  "description": "The **Ctu Theme** Theme is for [Grav CMS](https://github.com/getgrav/grav).  This README.md file should be modified to describe the features, installation, configuration, and general usage of this theme.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.99.0",
+    "vite": "^6.4.2"
+  }
+}

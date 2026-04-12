@@ -1,55 +1,61 @@
 <!DOCTYPE html>
 <html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
 <head>
-{% block head %}
-    <meta charset="utf-8" />
-    <title>{% if header.title %}{{ header.title|e }} | {% endif %}{{ site.title|e }}</title>
+    {% block head %}
+        <meta charset="utf-8"/>
+        <title>{% if header.title %}{{ header.title|e }} | {% endif %}{{ site.title|e }}</title>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% include 'partials/metadata.html.twig' %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% include 'partials/metadata.html.twig' %}
 
-    <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png')|e }}" />
-    <link rel="canonical" href="{{ page.canonical(true)|e }}" />
-{% endblock head %}
+        <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png')|e }}"/>
+        <link rel="canonical" href="{{ page.canonical(true)|e }}"/>
+    {% endblock head %}
+    {% block stylesheets %}
+        {# Во время разработки подключаем напрямую, в продакшене — скомпилированный файл #}
+        {% if config.system.debugger.enabled %}
+            <link rel="stylesheet" href="http://localhost:5173/scss/main.scss">
+        {% else %}
+            {% do assets.addCss('theme://dist/style.css') %}
+        {% endif %}
+    {% endblock %}
 
-{% block stylesheets %}
-    {% do assets.addCss('https://unpkg.com/purecss@1.0.0/build/pure-min.css', 100) %}
-    {% do assets.addCss('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', 99) %}
-    {% do assets.addCss('theme://css/custom.css', 98) %}
-{% endblock %}
+    {% block javascripts %}
+        {% do assets.addJs('jquery', 100) %}
+    {% endblock %}
 
-{% block javascripts %}
-    {% do assets.addJs('jquery', 100) %}
-{% endblock %}
-
-{% block assets deferred %}
+    {% block assets deferred %}
     {{ assets.css()|raw }}
     {{ assets.js()|raw }}
-{% endblock %}
+    {% endblock %}
 </head>
 <body id="top" class="{{ page.header.body_classes|e }}">
 
 {% block header %}
-    <div class="header">
-        <div class="wrapper padding">
-            <a class="logo left" href="{{ home_url|e }}">
-                <i class="fa fa-rebel"></i>
-                {{ config.site.title|e }}
+    <header class="site-header">
+        <div class="container">
+            <a class="logo" href="{{ home_url|e }}">
+            <img src="{{ url('theme://images/logo.webp') }}"
+                 alt="{{ site.title|e }}"/>
             </a>
             {% block header_navigation %}
-            <nav class="main-nav">
-                {% include 'partials/navigation.html.twig' %}
-            </nav>
+                <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+                    <span class="sr-only">Menu</span>
+                    <span class="hamburger-icon"></span>
+                </button>
+                <nav class="main-nav">
+                    {% include 'partials/navigation.html.twig' %}
+                </nav>
             {% endblock %}
         </div>
-    </div>
+    </header>
 {% endblock %}
 
 {% block body %}
     <section id="body">
         <div class="wrapper padding">
-        {% block content %}{% endblock %}
+            {% block content %}{% endblock %}
         </div>
     </section>
 {% endblock %}
@@ -57,7 +63,8 @@
 {% block footer %}
     <div class="footer text-center">
         <div class="wrapper padding">
-            <p><a href="https://getgrav.org">Grav</a> was <i class="fa fa-code"></i> with <i class="fa fa-heart"></i> by <a href="https://trilby.media">Trilby Media, LLC</a>.</p>
+            <p><a href="https://getgrav.org">Grav</a> was <i class="fa fa-code"></i> with <i class="fa fa-heart"></i> by
+                <a href="https://trilby.media">Trilby Media, LLC</a>.</p>
         </div>
     </div>
 {% endblock %}
