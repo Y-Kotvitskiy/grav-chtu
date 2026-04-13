@@ -15,7 +15,8 @@
     {% block stylesheets %}
         {# Во время разработки подключаем напрямую, в продакшене — скомпилированный файл #}
         {% if config.system.debugger.enabled %}
-            <link rel="stylesheet" href="http://localhost:5173/scss/main.scss">
+            <script type="module" src="http://localhost:5173/@vite/client"></script>
+            <script type="module" src="http://localhost:5173/scss/main.scss"></script>
         {% else %}
             {% do assets.addCss('theme://dist/style.css') %}
         {% endif %}
@@ -33,21 +34,30 @@
 <body id="top" class="{{ page.header.body_classes|e }}">
 
 {% block header %}
-    <header class="site-header">
+    <header class="header">
         <div class="container">
-            <a class="logo" href="{{ home_url|e }}">
-            <img src="{{ url('theme://images/logo.webp') }}"
-                 alt="{{ site.title|e }}"/>
-            </a>
-            {% block header_navigation %}
-                <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
-                    <span class="sr-only">Menu</span>
-                    <span class="hamburger-icon"></span>
-                </button>
-                <nav class="main-nav">
-                    {% include 'partials/navigation.html.twig' %}
-                </nav>
-            {% endblock %}
+            <div class="header__content">
+                <a class="logo" href="{{ home_url|e }}">
+                    <img src="{{ url('theme://images/logo.webp') }}"
+                         alt="{{ site.title|e }}"/>
+                </a>
+                {% block header_navigation %}
+                    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+                        <span class="sr-only">Menu</span>
+                        <span class="menu-toggle__icon">
+                        <svg class="menu-toggle__image" width="16" height="11" viewBox="0 0 16 11" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <rect width="16" height="1"></rect>
+                            <rect y="5" width="16" height="1"></rect>
+                            <rect y="10" width="16" height="1">   </rect>
+                        </svg>
+                    </span>
+                    </button>
+                    <nav class="main-nav">
+                        {% include 'partials/navigation.html.twig' %}
+                    </nav>
+                {% endblock %}
+            </div>
         </div>
     </header>
 {% endblock %}

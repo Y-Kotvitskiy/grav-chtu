@@ -1,4 +1,10 @@
-@import "utils/variables";
+@use 'utils/variables' as *;
+@use "blocks/nav-list";
+
+body, html {
+  padding: 0;
+  margin: 0;
+}
 
 ul {
   list-style: none;
