@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
+<html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}" class="page">
 <head>
     {% block head %}
         <meta charset="utf-8"/>
@@ -11,6 +11,12 @@
 
         <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png')|e }}"/>
         <link rel="canonical" href="{{ page.canonical(true)|e }}"/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+              rel="stylesheet">
+
     {% endblock head %}
     {% block stylesheets %}
         {# Во время разработки подключаем напрямую, в продакшене — скомпилированный файл #}
@@ -18,12 +24,19 @@
             <script type="module" src="http://localhost:5173/@vite/client"></script>
             <script type="module" src="http://localhost:5173/scss/main.scss"></script>
         {% else %}
-            {% do assets.addCss('theme://dist/style.css') %}
+            {% set manifestPath = url('theme://dist/.vite/manifest.json') %}
+            {% set manifestData = read_file(manifestPath) %}
+            {% set manifest = manifestData|json_decode %}
+            {# 3. Get the hashed filename using your specific key #}
+            {% set hashedCSS = manifest['scss/main.scss'].file %}
+{#            {% do assets.addCss('theme://dist/' ~ hashedCSS) %}#}
+            {% do assets.addCss('theme://dist/assets/main-B_beZ86E.css') %}
         {% endif %}
     {% endblock %}
 
     {% block javascripts %}
-        {% do assets.addJs('jquery', 100) %}
+{#        {% do assets.addJs('jquery', 100) %}#}
+        {% do assets.addJs('theme://js/custom.js', {priority: 100, group: 'bottom'}) %}
     {% endblock %}
 
     {% block assets deferred %}
@@ -31,31 +44,33 @@
     {{ assets.js()|raw }}
     {% endblock %}
 </head>
-<body id="top" class="{{ page.header.body_classes|e }}">
+<body id="top" class="page__body {{ page.header.body_classes|e }}">
 
 {% block header %}
-    <header class="header">
+    <header class="menu">
         <div class="container">
-            <div class="header__content">
-                <a class="logo" href="{{ home_url|e }}">
-                    <img src="{{ url('theme://images/logo.webp') }}"
+            <div class="menu__content">
+                <a class="menu__logo" href="{{ home_url|e }}">
+                    <img class="menu__logo-img" src="{{ url('theme://images/logo.webp') }}"
                          alt="{{ site.title|e }}"/>
                 </a>
+                {% set schedule_page = pages.find('/passagers/schedule') %}
+
+                {% if schedule_page %}
+                    <a href="{{ schedule_page.url }}" class="menu__schedule">
+                        {{ schedule_page.title }}
+                    </a>
+                {% endif %}
+
+
                 {% block header_navigation %}
-                    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
-                        <span class="sr-only">Menu</span>
-                        <span class="menu-toggle__icon">
-                        <svg class="menu-toggle__image" width="16" height="11" viewBox="0 0 16 11" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <rect width="16" height="1"></rect>
-                            <rect y="5" width="16" height="1"></rect>
-                            <rect y="10" width="16" height="1">   </rect>
-                        </svg>
-                    </span>
+                    <button class="menu__toggle" id="mobile-menu" aria-label="Відкрити меню">
+                        <span class="menu__bar"></span>
+                        <span class="menu__bar"></span>
+                        <span class="menu__bar"></span>
                     </button>
-                    <nav class="main-nav">
-                        {% include 'partials/navigation.html.twig' %}
-                    </nav>
+
+                    {% include 'partials/navigation.html.twig' %}
                 {% endblock %}
             </div>
         </div>

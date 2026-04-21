@@ -1,0 +1,11 @@
+@use '../utils' as u;
+
+.page {
+  font-family: Roboto, sans-serif;
+  background-color: u.$main-background-color;
+  min-width: u.$mobile-min-width;
+
+  &__body:has(.menu:target) {
+    overflow: hidden;
+  }
+}

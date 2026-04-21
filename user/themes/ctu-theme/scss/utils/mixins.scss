@@ -1,13 +1,31 @@
-@import "variables";
+@use "variables" as v;
 
 @mixin on-tablet {
-  @media (min-width: $tablet-min-width) {
+  @media (min-width: v.$tablet-min-width) {
     @content;
   }
 }
 
 @mixin on-desktop {
-  @media (min-width: $desktop-min-width) {
+  @media (min-width: v.$desktop-min-width) {
     @content;
   }
+}
+
+@mixin content-padding-inline {
+  padding-inline: v.$mobile-inline-padding;
+
+  @include on-tablet {
+    padding-inline: v.$tablet-inline-padding;
+  }
+
+  @include on-desktop {
+    margin-inline: auto;
+    max-width: v.$desktop-min-width;
+    padding-inline: v.$desktop-inline-padding;
+  }
+}
+
+.container {
+  @include content-padding-inline;
 }

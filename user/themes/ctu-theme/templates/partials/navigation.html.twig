@@ -1,19 +1,18 @@
 {% macro loop(page) %}
     {% for p in page.children.visible %}
-        {% set current_page = (p.active or p.activeChild) ? 'selected' : '' %}
         {% if p.children.visible.count > 0 %}
-            <li class="has-dropdonw {{ current_page|e }}">
-                <button class="dropdown-trigger">
+            <li class="menu__item menu__item--has-dropdown">
+                <button class="menu__button">
                     {{ p.menu|e }}
+                    <span class="menu__arrow"></span>
                 </button>
-                <ul>
+                <ul class="menu__submenu">
                     {{ _self.loop(p) }}
                 </ul>
             </li>
         {% else %}
-            <li class="{{ current_page|e }}">
-                <a href="{{ p.url|e }}">
-                    {% if p.header.icon %}<i class="fa fa-{{ p.header.icon|e }}"></i>{% endif %}
+            <li class="menu__sumbmenu-item ">
+                <a href="{{ p.url|e }}" class="menu__submenu-link">
                     {{ p.menu|e }}
                 </a>
             </li>
@@ -21,20 +20,9 @@
     {% endfor %}
 {% endmacro %}
 
-<ul class="nav-list">
-    {% if config.theme.dropdown.enabled %}
-        {{ _self.loop(pages) }}
-    {% else %}
-        {% for page in pages.children.visible %}
-            {% set current_page = (page.active or page.activeChild) ? 'selected' : '' %}
-            <li class="{{ current_page|e }}">
-                <a href="{{ page.url|e }}">
-                    {% if page.header.icon %}<i class="fa fa-{{ page.header.icon|e }}"></i>{% endif %}
-                    {{ page.menu|e }}
-                </a>
-            </li>
-        {% endfor %}
-    {% endif %}
+<ul class="menu__list">
+    {{ _self.loop(pages) }}
+
     {% for mitem in site.menu %}
         <li>
             <a href="{{ mitem.url|e }}">
@@ -43,4 +31,5 @@
             </a>
         </li>
     {% endfor %}
+
 </ul>

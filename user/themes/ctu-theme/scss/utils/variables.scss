@@ -1,11 +1,16 @@
 $header-background: #00102e;
-$dropdown-background: #06255e;
+$header-dropdown-background: #101f3b;
 $link-color: #fff;
 $text-color: #000;
 $highlight-color: #f1c506;
-
 $main-background-color: #fff;
-$desktop-min-width: 320px;
+
+$mobile-inline-padding: 20px;
+$tablet-inline-padding: 24px;
+$desktop-inline-padding: 120px;;
+
+$mobile-min-width: 320px;
 $tablet-min-width: 744px;
 $desktop-min-width: 1024px;
 
+$mobile-header-height: 70px;

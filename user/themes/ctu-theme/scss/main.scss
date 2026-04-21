@@ -1,9 +1,11 @@
-@use 'utils/variables' as *;
-@use "blocks/nav-list";
+@use "blocks/page";
+@use "blocks/menu";
+
 
 body, html {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 ul {
@@ -14,10 +16,6 @@ ul {
 
 input, button, textarea, select {
   font: inherit; /* Fixes fonts not inheriting in form elements */
-}
-
-body {
-  background-color: $main-background-color;
 }
 
 .sr-only {
