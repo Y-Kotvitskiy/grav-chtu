@@ -25,6 +25,13 @@
   @include u.on-tablet(){
     font-size: 3rem;
   }
-
 }
 
+@mixin link-font{
+  color: inherit;
+
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-decoration: none;
+
+}

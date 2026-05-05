@@ -1,6 +1,8 @@
 @use '../utils' as u;
 @use '../fonts' as f;
 
+$bottom-line-color: #F1C506;
+
 /* Ключевые кадры для движения */
 @keyframes bg-parallax {
   to {
@@ -99,6 +101,10 @@
     line-height: 1;
     font-weight: 600;
 
+    @include u.on-desktop{
+      font-size: 4.4rem;
+    }
+
   }
 }
 
@@ -162,7 +168,7 @@
       padding-top: 1rem;
       display: block;
       width: 70%;
-      border-bottom: 1px solid #F1C506;
+      border-bottom: 1px solid $bottom-line-color;
 
     }
   }
@@ -176,5 +182,57 @@
     text-transform: lowercase;
 
     @include f.subtitle-font;
+  }
+}
+
+.home-news{
+  padding-block: 100px;
+
+  @include u.content-padding-inline();
+
+  @include u.on-desktop{
+    padding-inline: 0;
+  }
+
+  h2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
+
+    @include u.on-desktop{
+      font-size: 3.2rem;
+    }
+
+    &::after{
+      content: '';
+      padding-top: 1rem;
+      width: 30%;
+      border-bottom: 1px solid $bottom-line-color;
+    }
+  }
+
+  &__content{
+    padding-top: 50px;
+    display: grid;
+    row-gap: 45px;
+    column-gap: 45px;
+
+    @include u.on-tablet{
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include u.on-desktop{
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    & p{
+      padding-inline: 15px;
+    }
+
+    & a{
+      @include f.link-font;
+    }
   }
 }
