@@ -1,11 +1,11 @@
 ---
 title: Home
+template: home
 visible: false
+body_classes: page-home
+custom_title: Чернігівське Тролейбусне Управління
+custom_subtitle: Муніципальний перевізник
 ---
-
-# Чернігівське Тролейбусне Управління
-
-<p class="subtitle">Муніципальний перевізник</p>
 
 Тролейбусів
 : 77

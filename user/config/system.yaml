@@ -58,8 +58,9 @@ pages:
   markdown:
     extra: true
     auto_line_breaks: false
-    auto_url_links: false
+    auto_url_links: true
     escape_markup: false
+    attribute_list: true
     special_chars:
       '>': gt
       '<': lt

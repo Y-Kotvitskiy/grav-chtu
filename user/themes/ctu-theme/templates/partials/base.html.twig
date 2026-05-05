@@ -19,6 +19,7 @@
 
     {% endblock head %}
     {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {# Во время разработки подключаем напрямую, в продакшене — скомпилированный файл #}
         {% if config.system.debugger.enabled %}
             <script type="module" src="http://localhost:5173/@vite/client"></script>
@@ -29,13 +30,13 @@
             {% set manifest = manifestData|json_decode %}
             {# 3. Get the hashed filename using your specific key #}
             {% set hashedCSS = manifest['scss/main.scss'].file %}
-{#            {% do assets.addCss('theme://dist/' ~ hashedCSS) %}#}
+            {#            {% do assets.addCss('theme://dist/' ~ hashedCSS) %} #}
             {% do assets.addCss('theme://dist/assets/main-B_beZ86E.css') %}
         {% endif %}
     {% endblock %}
 
     {% block javascripts %}
-{#        {% do assets.addJs('jquery', 100) %}#}
+        {#        {% do assets.addJs('jquery', 100) %} #}
         {% do assets.addJs('theme://js/custom.js', {priority: 100, group: 'bottom'}) %}
     {% endblock %}
 
@@ -77,13 +78,7 @@
     </header>
 {% endblock %}
 
-{% block body %}
-    <section id="body">
-        <div class="wrapper padding">
-            {% block content %}{% endblock %}
-        </div>
-    </section>
-{% endblock %}
+{% block content %}{% endblock %}
 
 {% block footer %}
     <div class="footer text-center">

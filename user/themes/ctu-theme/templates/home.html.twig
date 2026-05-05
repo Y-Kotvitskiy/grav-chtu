@@ -1,0 +1,17 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    {% if page.header.custom_title %}
+        <div class="home-title">
+            <div class="home-title__parallax-bg"></div>
+            <div class="home-title__content">
+                <h1 class="home-title__title">{{ page.header.custom_title }}</h1>
+                <p class="home-title__subtitle">{{ page.header.custom_subtitle }}</p>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="next-section">
+    </div>
+    {{ page.content|raw }}
+{% endblock %}

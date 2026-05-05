@@ -1,0 +1,30 @@
+@use 'utils' as u;
+
+@mixin menu-font{
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+@mixin title-font{
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 3.5rem;
+
+  @include u.on-tablet(){
+    font-size: 5.7rem;
+    line-height: 6.7rem;
+  }
+
+}
+
+@mixin subtitle-font{
+  padding-block: 2rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+
+  @include u.on-tablet(){
+    font-size: 3rem;
+  }
+
+}
+
