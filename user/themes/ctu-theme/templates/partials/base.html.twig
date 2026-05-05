@@ -23,21 +23,20 @@
         {# Во время разработки подключаем напрямую, в продакшене — скомпилированный файл #}
         {% if config.system.debugger.enabled %}
             <script type="module" src="http://localhost:5173/@vite/client"></script>
-            <script type="module" src="http://localhost:5173/scss/main.scss"></script>
+            <script type="module" src="http://localhost:5173/src/main.js"></script>
         {% else %}
-            {% set manifestPath = url('theme://dist/.vite/manifest.json') %}
-            {% set manifestData = read_file(manifestPath) %}
-            {% set manifest = manifestData|json_decode %}
-            {# 3. Get the hashed filename using your specific key #}
-            {% set hashedCSS = manifest['scss/main.scss'].file %}
-            {#            {% do assets.addCss('theme://dist/' ~ hashedCSS) %} #}
-            {% do assets.addCss('theme://dist/assets/main-B_beZ86E.css') %}
+            {# Production: Load the CSS and JS from the manifest #}
+            {% set manifest = read_file(url('theme://dist/.vite/manifest.json'))|json_decode %}
+
+            {# Vite automatically links the CSS to the JS entry in the manifest #}
+            {% do assets.addCss('theme://dist/' ~ manifest['src/main.js'].css[0]) %}
+            {% do assets.addJs('theme://dist/' ~ manifest['src/main.js'].file, { 'type': 'module' }) %}
         {% endif %}
     {% endblock %}
 
     {% block javascripts %}
         {#        {% do assets.addJs('jquery', 100) %} #}
-        {% do assets.addJs('theme://js/custom.js', {priority: 100, group: 'bottom'}) %}
+{#        {% do assets.addJs('theme://js/custom.js', {priority: 100, group: 'bottom'}) %}#}
     {% endblock %}
 
     {% block assets deferred %}
