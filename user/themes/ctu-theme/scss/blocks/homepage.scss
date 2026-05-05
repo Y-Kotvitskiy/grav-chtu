@@ -1,7 +1,7 @@
 @use '../utils' as u;
 @use '../fonts' as f;
 
-$bottom-line-color: #F1C506;
+$highlight-background-color: #F1C506;
 
 /* Ключевые кадры для движения */
 @keyframes bg-parallax {
@@ -30,7 +30,7 @@ $bottom-line-color: #F1C506;
     grid-template-rows: repeat(4, auto);
     place-items: center;
 
-    background-color: #f1c506;
+    background-color: $highlight-background-color;
 
     @include u.on-tablet{
       padding: 5rem 2rem;
@@ -168,7 +168,7 @@ $bottom-line-color: #F1C506;
       padding-top: 1rem;
       display: block;
       width: 70%;
-      border-bottom: 1px solid $bottom-line-color;
+      border-bottom: 1px solid $highlight-background-color;
 
     }
   }
@@ -209,7 +209,7 @@ $bottom-line-color: #F1C506;
       content: '';
       padding-top: 1rem;
       width: 30%;
-      border-bottom: 1px solid $bottom-line-color;
+      border-bottom: 1px solid $highlight-background-color;
     }
   }
 
@@ -233,6 +233,45 @@ $bottom-line-color: #F1C506;
 
     & a{
       @include f.link-font;
+    }
+  }
+}
+
+.home-media{
+  padding-block: 50px;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  background-color: $highlight-background-color;
+
+  &__link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    height: 8rem;
+    border: 1px solid #252525;
+    border-radius: 50%;
+    text-decoration: none;
+  }
+
+  &__icon{
+
+    &::before{
+      content: "\f39e";
+      font-family: "Font Awesome 5 Brands";
+      font-style: normal;
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: #252525;
+    }
+
+    &-facebook::before{
+      content: "\f39e";
+    }
+
+    &-youtube::before{
+      content: "\f167";
     }
   }
 }

@@ -31,3 +31,21 @@ custom_subtitle: Муніципальний перевізник
 
 [/div]
 [/div]
+
+<div class="home-media">
+    <a 
+        href="https://www.facebook.com/chernihiv.trolleybus" 
+        class="home-media__link"
+        title="КП «Чернігівське тролейбусне управління» on Facebook"
+    >
+        <i class="home-media__icon home-media__icon-facebook"> </i>
+    </a>
+
+    <a 
+        href="https://youtube.com/yourchannel" 
+        class="home-media__link"
+        title="КП «Чернігівське тролейбусне управління» on Youtube"
+    >
+        <i class="home-media__icon home-media__icon-youtube"> </i>
+    </a>
+</div>
