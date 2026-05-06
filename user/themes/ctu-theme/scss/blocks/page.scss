@@ -1,4 +1,5 @@
 @use '../utils' as u;
+@use '../fonts' as f;
 
 .page {
   font-family: Roboto, sans-serif;
@@ -11,10 +12,36 @@
     flex-direction: column;
     justify-content: space-between;
 
+    @include f.body-text;
+
+    .article &-main{
+      margin-block: 2rem;
+    }
+
     &-main{
       flex-grow: 1;
 
       @include u.content-padding-inline;
+
+      & article{
+        padding-block: 2rem;
+      }
+
+      & h1{
+        margin-block: 50px 20px;
+
+        @include f.h1;
+      }
+
+      & h2{
+        margin-block: 40px 16px;
+
+        @include f.h2;
+      }
+
+      & p{
+        text-align: justify;
+      }
     }
 
     &:has(.menu:target) {

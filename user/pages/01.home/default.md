@@ -19,18 +19,18 @@ custom_subtitle: Муніципальний перевізник
 Маршрутів
 : 9
 
-[div  class="home-news" tag="section"]
+[wrapper  class="home-news" tag="section"]
 ## Останні новини
 
-[div class="home-news__content"]
+[wrapper class="home-news__content"]
 [Фінансові показники КП «Чернігівське тролейбусне управління» за 2017](base_url:/)
 
 [Фінансові показники КП «Чернігівське тролейбусне управління» за 2020 рік](base_url:/)
 
 [Фінансові показники КП «Чернігівське тролейбусне управління» за 2019 рік](base_url:/)
 
-[/div]
-[/div]
+[/wrapper]
+[/wrapper]
 
 <div class="home-media">
     <a 
@@ -42,7 +42,7 @@ custom_subtitle: Муніципальний перевізник
     </a>
 
     <a 
-        href="https://youtube.com/yourchannel" 
+        href="https://www.youtube.com/@kpchtu" 
         class="home-media__link"
         title="КП «Чернігівське тролейбусне управління» on Youtube"
     >

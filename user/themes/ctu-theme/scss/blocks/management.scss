@@ -1,0 +1,15 @@
+@use '../utils' as u;
+
+.management{
+  & main ul{
+    display: grid;
+    width: 100%;
+    gap: 1px;
+    background-color: rgb(35, 52, 82);
+  }
+
+  & main li{
+    padding-block: 2rem;
+    background-color: u.$main-bg-color;
+  }
+}
