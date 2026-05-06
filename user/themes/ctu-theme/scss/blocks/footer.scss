@@ -1,0 +1,66 @@
+@use '../utils' as u;
+
+.footer {
+  background-color: #1c1c1c;
+
+  &__content{
+  padding: 15px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+
+  color: #666;
+
+  font-size: 1.6rem;
+
+  @include u.on-tablet{
+    flex-direction: row;
+  }
+
+  & a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  & .copyright{
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .media{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+
+  & .icon {
+    width: 16px;
+    height: 16px;
+
+    display: inline-block;
+
+    &::before {
+      content: "\f39e";
+      font-family: "Font Awesome 5 Brands";
+      font-style: normal;
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: inherit;
+    }
+
+    &-facebook::before {
+      content: "\f39e";
+    }
+
+    &-youtube::before {
+      content: "\f167";
+    }
+
+  }
+
+  }
+}

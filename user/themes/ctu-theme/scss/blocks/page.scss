@@ -2,10 +2,23 @@
 
 .page {
   font-family: Roboto, sans-serif;
-  background-color: u.$main-background-color;
+  background-color: u.$main-bg-color;
   min-width: u.$mobile-min-width;
 
-  &__body:has(.menu:target) {
-    overflow: hidden;
+  &__body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &-main{
+      flex-grow: 1;
+
+      @include u.content-padding-inline;
+    }
+
+    &:has(.menu:target) {
+      overflow: hidden;
+    }
   }
 }

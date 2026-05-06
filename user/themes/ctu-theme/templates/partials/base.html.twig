@@ -19,11 +19,13 @@
 
     {% endblock head %}
     {% block stylesheets %}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+              integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+              crossorigin="anonymous" referrerpolicy="no-referrer"/>
         {# Во время разработки подключаем напрямую, в продакшене — скомпилированный файл #}
         {% if config.system.debugger.enabled %}
-            <script type="module" src="http://localhost:5173/@vite/client"></script>
-            <script type="module" src="http://localhost:5173/src/main.js"></script>
+        <script type="module" src="http://localhost:5173/@vite/client"></script>
+        <script type="module" src="http://localhost:5173/src/main.js"></script>
         {% else %}
             {# Production: Load the CSS and JS from the manifest #}
             {% set manifest = read_file(url('theme://dist/.vite/manifest.json'))|json_decode %}
@@ -36,7 +38,7 @@
 
     {% block javascripts %}
         {#        {% do assets.addJs('jquery', 100) %} #}
-{#        {% do assets.addJs('theme://js/custom.js', {priority: 100, group: 'bottom'}) %}#}
+        {#        {% do assets.addJs('theme://js/custom.js', {priority: 100, group: 'bottom'}) %} #}
     {% endblock %}
 
     {% block assets deferred %}
@@ -80,7 +82,13 @@
 {% block content %}{% endblock %}
 
 {% block footer %}
+    {% set footer_page = page.find('/home/_footer') %}
     <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                {{ footer_page.content|raw }}
+            </div>
+        </div>
     </footer>
 {% endblock %}
 

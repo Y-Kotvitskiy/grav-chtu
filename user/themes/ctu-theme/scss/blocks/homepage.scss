@@ -200,6 +200,7 @@ $highlight-background-color: #F1C506;
     justify-content: center;
     align-items: center;
     font-size: 2.4rem;
+    text-transform: uppercase;
 
     @include u.on-desktop{
       font-size: 3.2rem;
