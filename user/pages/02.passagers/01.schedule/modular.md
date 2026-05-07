@@ -1,6 +1,7 @@
 ---
 title: Розклад руху
 visible: true
+body_classes: schedule
 routes:
     default: /schedule
 content:

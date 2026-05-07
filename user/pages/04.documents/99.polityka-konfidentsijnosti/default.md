@@ -1,4 +1,4 @@
----
+[---
 title: Політика конфіденційності
 visible: false
 process:
@@ -6,7 +6,7 @@ process:
 routes:
   default: /polityka-konfidentsijnosti
 body_classes: article
----
+---]()
 
 # Політика конфіденційності
 

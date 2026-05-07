@@ -10,7 +10,6 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     @include f.body-text;
 
@@ -30,6 +29,7 @@
       & h1{
         margin-block: 50px 20px;
 
+        text-align: center;
         @include f.h1;
       }
 

@@ -1,0 +1,16 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    <main class="page__body-main">
+
+        {# Выводим основной контент страницы modular.md, если он есть #}
+        {{ page.content|raw }}
+
+        {# Цикл, который проходит по всем модулям (подпапкам) #}
+        {% for module in page.collection() %}
+            <div id="{{ _self.generateHtmlId(module.menu) }}" class="modular-row">
+                {{ module.content|raw }}
+            </div>
+        {% endfor %}
+    </main>s
+{% endblock %}

@@ -4,7 +4,7 @@ import liveReload from 'vite-plugin-live-reload';
 export default defineConfig({
   plugins: [
     // This watches your Grav templates for changes too
-    liveReload('./templates/**/*.twig'),
+    liveReload(['./templates/**/*.twig','./../../pages/**/*.md']),
   ],
 
   build: {

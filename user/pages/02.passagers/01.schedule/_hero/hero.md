@@ -1,4 +1,3 @@
 ---
 title: 'Розклад'
-template: default 
 ---
