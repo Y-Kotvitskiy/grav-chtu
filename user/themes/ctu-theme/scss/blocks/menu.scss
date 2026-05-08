@@ -40,8 +40,6 @@ $color-submenu: hsl(219, 100% , 25%);
     justify-content: space-between;
     align-items: center;
     gap: 1em;
-
-    padding: 0 20px;
   }
 
   &__logo {
@@ -61,7 +59,7 @@ $color-submenu: hsl(219, 100% , 25%);
   }
 
   &__schedule {
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: 1px solid transparent;
     border-radius: 10px;
     color: #000;
@@ -73,6 +71,7 @@ $color-submenu: hsl(219, 100% , 25%);
     order: 2;
 
     @include u.on-tablet() {
+      padding: 10px 20px;
       order: 4;
     }
 

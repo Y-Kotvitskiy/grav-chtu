@@ -19,21 +19,29 @@
 
     {% endblock head %}
     {% block stylesheets %}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-              integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-              crossorigin="anonymous" referrerpolicy="no-referrer"/>
-        {# Во время разработки подключаем напрямую, в продакшене — скомпилированный файл #}
-        {% if config.system.debugger.enabled %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    {# Во время разработки подключаем напрямую, в продакшене — скомпилированный файл #}
+    {% if config.system.debugger.enabled %}
         <script type="module" src="http://localhost:5173/@vite/client"></script>
         <script type="module" src="http://localhost:5173/src/main.js"></script>
-        {% else %}
-            {# Production: Load the CSS and JS from the manifest #}
-            {% set manifest = read_file(url('theme://dist/.vite/manifest.json'))|json_decode %}
 
-            {# Vite automatically links the CSS to the JS entry in the manifest #}
-            {% do assets.addCss('theme://dist/' ~ manifest['src/main.js'].css[0]) %}
-            {% do assets.addJs('theme://dist/' ~ manifest['src/main.js'].file, { 'type': 'module' }) %}
+    {% else %}
+
+        {% set manifest = {} %}
+        {% set manifest_path = 'theme://dist/.vite/manifest.json' %}
+
+        {% if file_exists(manifest_path) %}
+            {% set content = read_file(manifest_path) %}
+            {% if content %}
+                {% set manifest = content|json_decode(true) %}
+                {% do assets.addCss('theme://dist/' ~ manifest['src/main.js'].css[0]) %}
+                {% do assets.addJs('theme://dist/' ~ manifest['src/main.js'].file, { 'type': 'module' }) %}
+            {% endif %}
         {% endif %}
+
+    {% endif %}
     {% endblock %}
 
     {% block javascripts %}

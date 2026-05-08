@@ -2,10 +2,14 @@
 
 .management{
   & main ul{
+    padding: 0;
+
     display: grid;
     width: 100%;
     gap: 1px;
     background-color: rgb(35, 52, 82);
+
+    list-style: none;
   }
 
   & main li{

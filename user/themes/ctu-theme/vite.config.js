@@ -12,7 +12,7 @@ export default defineConfig({
     manifest: true,
     outDir: 'dist',
     rollupOptions: {
-      input: './scss/main.js', // Point to your entry SCSS
+      input: './src/main.js', // Point to your entry SCSS
     },
   },
 

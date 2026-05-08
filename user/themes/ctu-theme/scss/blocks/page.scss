@@ -42,6 +42,13 @@
       & p{
         text-align: justify;
       }
+
+      & ul{
+        margin-block: 1.6rem 2.4rem;
+        padding-left: 4rem;
+        list-style-type: disc;
+      }
+
     }
 
     &:has(.menu:target) {

@@ -1,13 +1,20 @@
 export function initMenu() {
-    console.log('ok')
+    const toggleBtn = document.querySelector(".menu__toggle");
+    const menuList = document.querySelector(".menu__list");
+    const dropdownButtons = document.querySelectorAll(".menu__button");
+    const body = document.querySelector("body");
+
     document.addEventListener("DOMContentLoaded", () => {
-        const toggleBtn = document.querySelector(".menu__toggle");
-        const menuList = document.querySelector(".menu__list");
-        const dropdownButtons = document.querySelectorAll(".menu__button");
 
         toggleBtn.addEventListener("click", () => {
             toggleBtn.classList.toggle("menu__toggle--is-active");
             menuList.classList.toggle("menu__list--is-active");
+
+            if (toggleBtn.classList.contains("menu__toggle--is-active")) {
+                body.style.overflow = "hidden";
+            } else {
+                body.style.overflow = "";
+            }
         });
 
         dropdownButtons.forEach((btn) => {
