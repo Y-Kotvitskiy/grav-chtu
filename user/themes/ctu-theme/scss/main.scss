@@ -3,7 +3,9 @@
 @use "blocks/menu";
 @use "blocks/management";
 @use "blocks/schedule";
+@use "blocks/ticket-prices";
 @use "blocks/footer";
+@use "utils" as u;
 
 body, html {
   padding: 0;
@@ -15,6 +17,7 @@ h1, h2, h3, h4, h5, h6, p, dd, dt {
   margin: 0;
   padding: 0;
 }
+
 html {
   font-size: 62.5%;
 }
@@ -27,6 +30,15 @@ ul {
 
 input, button, textarea, select {
   font: inherit; /* Fixes fonts not inheriting in form elements */
+}
+
+a {
+  color: u.$link-color;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    color: u.$link-hover-color;
+  }
 }
 
 .sr-only {

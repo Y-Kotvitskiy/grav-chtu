@@ -4,8 +4,11 @@
 .page-home {
 
   dl {
+    position: relative;
+    width: 100%;
+
     margin: 0;
-    padding: 3rem 2rem;
+    padding-block: 3rem;
 
     display: grid;
     grid-auto-flow: column;
@@ -13,14 +16,32 @@
     grid-template-rows: repeat(4, auto);
     place-items: center;
 
-    background-color: u.$highlight-color;
+    box-sizing: border-box;
+
+    @include u.content-padding-inline();
+
+    &::after{
+      z-index: -5;
+      content: "";
+      position: absolute;
+      top:0;
+      bottom: 0;
+      width: 100vw;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: u.$highlight-color;
+    }
 
     @include u.on-tablet {
-      padding: 5rem 2rem;
+      padding-block: 5rem;
 
       grid-auto-flow: column;
       grid-auto-columns: 1fr;
       grid-template-rows: auto auto;
+    }
+
+    @include u.on-desktop{
+      padding-inline: 0;
     }
   }
 
@@ -101,7 +122,7 @@
   justify-content: center;
 
   &__parallax-bg {
-    z-index: -1;
+    z-index: -10;
     position: absolute;
     top: 0;
     left: 0;
@@ -156,13 +177,31 @@
 }
 
 .home-news {
+  position: relative;
+  width: 100%;
+
   padding-block: 100px;
+
+  box-sizing: border-box;
 
   @include u.content-padding-inline();
 
   @include u.on-desktop {
     padding-inline: 0;
   }
+
+  &::after{
+    z-index: -5;
+    content: "";
+    position: absolute;
+    top:0;
+    bottom: 0;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: u.$main-bg-color;
+  }
+
 
   h2 {
     display: flex;
