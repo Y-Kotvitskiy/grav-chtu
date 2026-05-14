@@ -1,25 +1,9 @@
 @use '../utils' as u;
 @use '../fonts' as f;
 
-
-/* Ключевые кадры для движения */
-@keyframes bg-parallax {
-  to {
-    transform: translateY(25%);
-  }
-  /* Фон движется вниз */
-}
-
-@keyframes title-parallax {
-  to {
-    transform: translateY(-150px); /* Текст уходит вверх */
-    opacity: 0; /* Плавно исчезает */
-  }
-}
-
 .page-home {
 
-  dl{
+  dl {
     margin: 0;
     padding: 3rem 2rem;
 
@@ -31,7 +15,7 @@
 
     background-color: u.$highlight-color;
 
-    @include u.on-tablet{
+    @include u.on-tablet {
       padding: 5rem 2rem;
 
       grid-auto-flow: column;
@@ -51,13 +35,13 @@
     font-size: 1.4rem;
     font-weight: 600;
 
-    @include u.on-tablet{
+    @include u.on-tablet {
       margin-top: 0;
       padding-bottom: 15px;
     }
 
     &::before {
-      content:'\f15b';
+      content: '\f15b';
       padding-bottom: 10px;
 
       display: inline;
@@ -65,25 +49,25 @@
       font-size: 30px;
       font-weight: 900;
 
-      @include u.on-tablet{
+      @include u.on-tablet {
         padding-bottom: 15px;
       }
     }
 
     &:nth-of-type(1):before {
-      content:"\f207";
+      content: "\f207";
     }
 
     &:nth-of-type(2):before {
-      content:"\f073";
+      content: "\f073";
     }
 
     &:nth-of-type(3):before {
-      content:"\f0c0";
+      content: "\f0c0";
     }
 
     &:nth-of-type(4):before {
-      content:"\f4d7";
+      content: "\f4d7";
     }
 
 
@@ -100,7 +84,7 @@
     line-height: 1;
     font-weight: 600;
 
-    @include u.on-desktop{
+    @include u.on-desktop {
       font-size: 4.4rem;
     }
 
@@ -111,44 +95,31 @@
   position: relative;
   height: calc(100vh - 80px); /* Высота на весь экран */
   width: 100%;
-  overflow: hidden; /* Прячем вылетающий фон */
+  overflow: hidden; /* Важно: чтобы фон не вылезал */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Создаем таймлайн для скролла этого блока */
-  view-timeline-name: --section-scroll;
 
   &__parallax-bg {
+    z-index: -1;
     position: absolute;
-    top: -15%; /* Выносим за края, чтобы не было пустых зон при движении */
+    top: 0;
     left: 0;
     width: 100%;
-    height: 130%; /* Делаем выше контейнера для запаса хода */
-    //background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    //url('/user/pages/01.home/home-title.webp');
-    background-image:  url('/user/pages/01.home/home-title.webp');
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
+    height: 120%; /* Делаем запас высоты для движения вниз */
+    background: var(--bg-mobile) center/cover no-repeat;
+    will-change: transform;
 
-    /* Анимация: фон плавно опускается вниз при скролле */
-    animation: bg-parallax linear forwards;
-    animation-timeline: --section-scroll;
-    animation-range: exit 0% exit 100%; /* Начинает двигаться при уходе секции */
+    @include u.on-tablet {
+      background: var(--bg-desktop) center/cover no-repeat;
+    }
   }
 
   &__content {
     position: relative;
-    z-index: 2; /* Поверх фона */
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    /* Анимация: текст улетает вверх быстрее фона */
-    animation: title-parallax linear forwards;
-    animation-timeline: --section-scroll;
-    animation-range: exit 0% exit 100%;
+    z-index: 2;
+    color: white;
+    will-change: transform, opacity;
   }
 
   &__title {
@@ -162,7 +133,7 @@
 
     @include f.title-font;
 
-    &::after{
+    &::after {
       content: '';
       padding-top: 1rem;
       display: block;
@@ -184,16 +155,16 @@
   }
 }
 
-.home-news{
+.home-news {
   padding-block: 100px;
 
   @include u.content-padding-inline();
 
-  @include u.on-desktop{
+  @include u.on-desktop {
     padding-inline: 0;
   }
 
-  h2{
+  h2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -201,11 +172,11 @@
     font-size: 2.4rem;
     text-transform: uppercase;
 
-    @include u.on-desktop{
+    @include u.on-desktop {
       font-size: 3.2rem;
     }
 
-    &::after{
+    &::after {
       content: '';
       padding-top: 1rem;
       width: 30%;
@@ -213,38 +184,38 @@
     }
   }
 
-  &__content{
+  &__content {
     padding-top: 50px;
     display: grid;
     row-gap: 45px;
     column-gap: 45px;
 
-    @include u.on-tablet{
+    @include u.on-tablet {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @include u.on-desktop{
+    @include u.on-desktop {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    & p{
+    & p {
       padding-inline: 15px;
     }
 
-    & a{
+    & a {
       @include f.link-font;
     }
   }
 }
 
-.home-media{
+.home-media {
   padding-block: 50px;
   display: flex;
   gap: 1rem;
   justify-content: center;
   background-color: u.$highlight-color;
 
-  &__link{
+  &__link {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -255,9 +226,9 @@
     text-decoration: none;
   }
 
-  &__icon{
+  &__icon {
 
-    &::before{
+    &::before {
       content: "\f39e";
       font-family: "Font Awesome 5 Brands";
       font-style: normal;
@@ -266,11 +237,11 @@
       color: #252525;
     }
 
-    &-facebook::before{
+    &-facebook::before {
       content: "\f39e";
     }
 
-    &-youtube::before{
+    &-youtube::before {
       content: "\f167";
     }
   }

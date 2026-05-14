@@ -2,7 +2,10 @@
 
 {% block content %}
     {% if page.header.custom_title %}
-        <div class="home-title">
+        {% set bg_full = page.media['home-title.webp'].url %}
+        {% set bg_small = page.media['home-title.webp'].resize(null, 744).url %}
+
+        <div class="home-title" style="--bg-desktop: url('{{ bg_full }}'); --bg-mobile: url('{{ bg_small }}');">
             <div class="home-title__parallax-bg"></div>
             <div class="home-title__content">
                 <h1 class="home-title__title">{{ page.header.custom_title }}</h1>
